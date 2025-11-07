@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { LawQa } from './components/lawQaComponent/law-qa/law-qa';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [LawQa],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('law_QA_Frontend');

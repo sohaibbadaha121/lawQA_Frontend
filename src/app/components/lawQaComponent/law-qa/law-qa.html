@@ -1,0 +1,25 @@
+<div class="Qa">
+  <h2>Law Q&A</h2>
+  <textarea
+    [(ngModel)]="lawtext"
+    rows="10"
+    cols="70"
+    placeholder="Paste the law text here"
+  ></textarea>
+  <br />
+  <br />
+  <input
+    type="text"
+    [(ngModel)]="question"
+    placeholder="Enter your question here"
+    class="question"
+  />
+  <br />
+  <br />
+  <button (click)="submit()">Get Answer</button>
+  @if (loading()) {
+  <div class="loading">Loading</div>
+  } @if (answer()) {
+  <div class="answer">{{ answer() }}</div>
+  }
+</div>

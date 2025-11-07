@@ -1,59 +1,180 @@
-# LawQAFrontend
+# Law Q&A - Angular Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
+## Overview
 
-## Development server
+An Angular application that provides an interactive interface for asking questions about legal documents. The application communicates with a Spring Boot backend that uses Google's Gemini AI to generate answers.
 
-To start a local development server, run:
+## Features
+
+- Clean and modern UI with gradient design
+- Real-time question answering
+- Loading state indicators
+- Responsive textarea and input fields
+- Smooth animations and transitions
+- Error handling
+
+## Technologies
+
+- Angular 18+
+- TypeScript
+- RxJS
+- Angular Signals
+- FormsModule
+- HttpClient
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   └── law-qa/
+│   │       ├── law-qa.ts
+│   │       ├── law-qa.html
+│   │       └── law-qa.css
+│   └── services/
+│       └── backendApiService/
+│           └── backend-api-calls.ts
+```
+
+## Setup
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+- Angular CLI
+
+### Installation
+
+```bash
+
+npm install -g @angular/cli
+
+git clone <repository-url>
+
+cd law-qa-frontend
+
+
+npm install
+
+
+ng serve
+```
+
+The application will be available at `http://localhost:4200`
+
+## Components
+
+### LawQa Component
+
+The main component that handles the Q&A interface.
+
+#### Signals
+
+| Signal   | Type    | Description                   |
+| -------- | ------- | ----------------------------- |
+| lawtext  | string  | The legal document text       |
+| question | string  | User's question about the law |
+| answer   | string  | AI-generated answer           |
+| loading  | boolean | Loading state indicator       |
+
+#### Methods
+
+- `submit()`: Sends the law text and question to the backend API
+
+## Services
+
+### BackendApiCalls Service
+
+Handles HTTP communication with the Spring Boot backend.
+
+#### Configuration
+
+```typescript
+private apiUrl = 'http://localhost:8080/api/law/ask';
+```
+
+#### Methods
+
+- `askQuestion(lawtext: string, question: string): Observable<any>`: Sends POST request to backend
+
+## Styling
+
+### Design Features
+
+- **Gradient Background**: Purple gradient (667eea → 764ba2)
+- **Button Gradient**: Pink gradient (f093fb → f5576c)
+- **Loading State**: Orange gradient (ffecd2 → fcb69f)
+- **Animations**:
+  - Fade-in effect for answer and loading
+  - Spinner animation for loading state
+  - Hover effects on buttons and inputs
+  - Ripple effect on button click
+
+### CSS Classes
+
+| Class     | Purpose                                 |
+| --------- | --------------------------------------- |
+| .Qa       | Main container with gradient background |
+| .question | Styled input field for questions        |
+| .loading  | Loading indicator with spinner          |
+| .answer   | Answer display container                |
+
+## Usage
+
+### Basic Workflow
+
+1. Paste legal document text in the textarea
+2. Enter your question in the input field
+3. Click "Get Answer" button
+4. Wait for AI-generated response
+5. View the answer in the styled container
+
+### Example
+
+```
+Law Text:
+"Article 1: All citizens have the right to free speech and expression."
+
+Question:
+"What rights do citizens have according to Article 1?"
+
+Answer:
+"According to Article 1, citizens have the right to free speech and expression."
+```
+
+## API Integration
+
+### Request Format
+
+```typescript
+{
+  lawtext: string,
+  question: string
+}
+```
+
+### Response Format
+
+```typescript
+{
+  answer: string;
+}
+```
+
+### Error Handling
+
+The application handles errors gracefully and displays:
+
+```
+"An error occurred while fetching the answer."
+```
+
+## Development
+
+### Running in Development Mode
 
 ```bash
 ng serve
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
