@@ -6,10 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BackendApiCalls {
-  private apiUrl = 'http://localhost:8080/api/law/ask';
+  private apiUrl = 'http://127.0.0.1:8080/api/ask';
   constructor(private http: HttpClient) {}
 
   askQuestion(lawtext: string, question: string): Observable<any> {
-    return this.http.post(this.apiUrl, { lawtext, question });
+    return this.http.post(this.apiUrl, {
+      lawText: lawtext,
+      question,
+    });
   }
 }
