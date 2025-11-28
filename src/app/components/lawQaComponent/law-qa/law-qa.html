@@ -1,24 +1,19 @@
 <div class="Qa">
-  <h2>Law Q&A</h2>
+  <h2>استشارات قانونية</h2>
   <textarea
     [(ngModel)]="lawtext"
     rows="10"
     cols="70"
-    placeholder="Paste the law text here"
+    placeholder="الصق النص القانوني هنا"
   ></textarea>
   <br />
   <br />
-  <input
-    type="text"
-    [(ngModel)]="question"
-    placeholder="Enter your question here"
-    class="question"
-  />
+  <input type="text" [(ngModel)]="question" placeholder="اكتب سؤالك هنا" class="question" />
   <br />
   <br />
-  <button (click)="submit()">Get Answer</button>
+  <button (click)="submit()">الحصول على الإجابة</button>
   @if (loading()) {
-  <div class="loading">Loading</div>
+  <div class="loading">جاري التحميل</div>
   } @if (answer()) {
   <div class="answer">{{ answer() }}</div>
   }
