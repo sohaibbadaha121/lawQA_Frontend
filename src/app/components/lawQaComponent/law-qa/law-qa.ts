@@ -31,4 +31,18 @@ export class LawQa {
       }
     );
   }
+  submit1() {
+    this.loading.set(true);
+    this.answer.set('');
+    this.backendservice.extract(this.lawtext()).subscribe(
+      (response) => {
+        this.answer.set(response.answer);
+        this.loading.set(false);
+      },
+      (error) => {
+        this.answer.set('An error occurred while fetching the answer.');
+        this.loading.set(false);
+      }
+    );
+  }
 }
