@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class BackendApiCalls {
   private apiUrl = 'http://127.0.0.1:8000/api/ask';
   private extractUrl = 'http://127.0.0.1:8000/api/extract';
+  private queryUrl = 'http://127.0.0.1:8000/api/db-query';
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +22,8 @@ export class BackendApiCalls {
     return this.http.post(this.extractUrl, {
       lawText: lawtext,
     });
+  }
+  sendquery(data: any): Observable<any> {
+    return this.http.post(this.queryUrl, data);
   }
 }

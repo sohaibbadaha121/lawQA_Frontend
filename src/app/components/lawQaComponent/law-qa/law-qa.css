@@ -155,7 +155,30 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   animation: fadeIn 0.5s ease;
   text-align: right;
-  line-height: 1.8;
+  line-height: 2;
   color: #2c2c2c;
   font-size: 17px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.answer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.answer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.answer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.answer::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
