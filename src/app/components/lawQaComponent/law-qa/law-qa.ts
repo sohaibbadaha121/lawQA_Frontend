@@ -33,6 +33,11 @@ export class LawQa {
     }
   }
 
+  clearFile(input: HTMLInputElement) {
+    this.selectedFile.set(null);
+    input.value = '';
+  }
+
   submit() {
     const file = this.selectedFile();
     if (!file) {

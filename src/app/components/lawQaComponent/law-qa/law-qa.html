@@ -8,9 +8,21 @@
       <i class="pi pi-plus upload-icon" (click)="fileInput.click()"></i>
       <input type="text" [(ngModel)]="question" placeholder="اكتب سؤالك هنا" class="question" />
     </div>
+
+    @if (selectedFile()) {
+      <div class="file-badge-container">
+        <div class="selected-file-badge">
+          <i class="pi pi-file-pdf"></i>
+          <span class="file-name">{{ selectedFile()?.name }}</span>
+          <i class="pi pi-times remove-file" (click)="clearFile(fileInput)"></i>
+        </div>
+      </div>
+    }
     
-    <button (click)="submit()">الحصول على الإجابة</button>
-    <button (click)="submit2()">Queries</button>
+    <div class="button-group">
+      <button (click)="submit()" [disabled]="loading()">الحصول على الإجابة</button>
+      <button (click)="submit2()" [disabled]="loading()">استعلام ذكي</button>
+    </div>
   </div>
 
   @if (loading()) {

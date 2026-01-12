@@ -139,6 +139,63 @@
   transition: width 0.6s, height 0.6s;
 }
 
+.file-badge-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.selected-file-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f0f4f8;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid #d1d9e6;
+  color: #334e68;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.pi-file-pdf {
+  color: #e53e3e;
+  font-size: 1.4rem;
+}
+
+.file-name {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+.remove-file {
+  cursor: pointer;
+  color: #9fb3c8;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.remove-file:hover {
+  color: #486581;
+  transform: scale(1.1);
+}
+
+.button-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.Qa button:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .Qa button:hover::before {
   width: 300px;
   height: 300px;
