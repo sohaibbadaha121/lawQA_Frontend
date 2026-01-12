@@ -1,19 +1,18 @@
 <div class="Qa">
   <h2>استشارات قانونية</h2>
-  <textarea
-    [(ngModel)]="lawtext"
-    rows="10"
-    cols="70"
-    placeholder="الصق النص القانوني هنا"
-  ></textarea>
-  <br />
-  <br />
-  <input type="text" [(ngModel)]="question" placeholder="اكتب سؤالك هنا" class="question" />
-  <br />
-  <br />
-  <button (click)="submit()">الحصول على الإجابة</button>
-  <button (click)="submit1()">اسخراج</button>
-  <button (click)="submit2()">Queries</button>
+  
+  <div class="input-section">
+    <input #fileInput type="file" (change)="onFileSelected($event)" accept=".pdf" style="display: none">
+
+    <div class="input-container">
+      <i class="pi pi-plus upload-icon" (click)="fileInput.click()"></i>
+      <input type="text" [(ngModel)]="question" placeholder="اكتب سؤالك هنا" class="question" />
+    </div>
+    
+    <button (click)="submit()">الحصول على الإجابة</button>
+    <button (click)="submit2()">Queries</button>
+  </div>
+
   @if (loading()) {
   <div class="loading">جاري التحميل</div>
   } @if (answer()) {

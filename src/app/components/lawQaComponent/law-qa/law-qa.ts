@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { BackendApiCalls } from '../../../services/backendApiService/backend-api-calls';
 import { ResponseFormatterService } from '../../../services/responseFormatterService/response-formatter.service';
+import { PrimeIcons } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class LawQa {
   lawtext = signal('');
   question = signal('');
+  selectedFile = signal<File | null>(null);
   answer = signal('');
   formattedAnswer = signal<any>(null);
   loading = signal(false);
@@ -24,11 +26,24 @@ export class LawQa {
   ) {}
 
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile.set(file);
+    }
+  }
+
   submit() {
+    const file = this.selectedFile();
+    if (!file) {
+      this.answer.set('يرجى اختيار ملف PDF أولاً.');
+      return;
+    }
     this.loading.set(true);
     this.answer.set('');
-    this.backendservice.askQuestion(this.lawtext(), this.question()).subscribe({
+    this.backendservice.askQuestion(file, this.question()).subscribe({
       next: (response) => {
+        console.log(response.answer);
         this.answer.set(response.answer);
         this.loading.set(false);
       },
@@ -68,6 +83,7 @@ export class LawQa {
       next: (response) => {
         if (response.answer) {
           try {
+            console.log(response.answer);
             const parsed = JSON.parse(response.answer);
             const formatted = this.responseFormatter.formatJsonResponse(parsed);
             this.formattedAnswer.set(parsed);

@@ -12,11 +12,11 @@ export class BackendApiCalls {
 
   constructor(private http: HttpClient) {}
 
-  askQuestion(lawtext: string, question: string): Observable<any> {
-    return this.http.post(this.apiUrl, {
-      lawText: lawtext,
-      question,
-    });
+  askQuestion(file: File, question: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('question', question);
+    return this.http.post(this.apiUrl, formData);
   }
   extract(lawtext: string): Observable<any> {
     return this.http.post(this.extractUrl, {
